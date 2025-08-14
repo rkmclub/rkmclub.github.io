@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Test API RKM</title>
+</head>
+<body>
+  <h1>Test API RKM</h1>
+  <button onclick="testCuota()">Registrar Cuota</button>
+  <button onclick="testPase()">Registrar Pase Diario</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    function logResult(result) {
+      document.getElementById('output').textContent = JSON.stringify(result, null, 2);
+    }
+
+    function testCuota() {
+      fetch('https://script.google.com/macros/s/AKfycbyl1_dPSuMl15f6o99Y4mCKETVVCIJH4Wpb8YuBqi9TxsrXsBDI2Hhy0W42yLWE4D299pYA/exec', {
+        method: 'POST',
+        body: new URLSearchParams({
+          accion: 'registrar_cuota',
+          admin_email: 'dalmirobu@gmail.com',
+          socio_id: '4',
+          monto: '40000'
+        })
+      })
+      .then(r => r.json())
+      .then(logResult)
+      .catch(console.error);
+    }
+
+    function testPase() {
+      fetch('https://script.google.com/macros/s/AKfycbyl1_dPSuMl15f6o99Y4mCKETVVCIJH4Wpb8YuBqi9TxsrXsBDI2Hhy0W42yLWE4D299pYA/exec', {
+        method: 'POST',
+        body: new URLSearchParams({
+          accion: 'registrar_pase_diario',
+          admin_email: 'dalmirobu@gmail.com',
+          nombre: 'Juan',
+          apellido: 'Pérez',
+          dni: '12345678',
+          telefono: '1132344455',
+          email: 'juan@example.com',
+          fecha_uso: '2025-08-14',
+          acepta_reglamento: 'S',
+          monto: '8000',
+          metodo_pago: 'efectivo'
+        })
+      })
+      .then(r => r.json())
+      .then(logResult)
+      .catch(console.error);
+    }
+  </script>
+</body>
+</html>
