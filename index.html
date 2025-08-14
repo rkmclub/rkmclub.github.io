@@ -12,12 +12,11 @@
   <pre id="output"></pre>
 
   <script>
-    function logResult(result) {
-      document.getElementById('output').textContent = JSON.stringify(result, null, 2);
-    }
+    const proxy = 'https://cors-anywhere.herokuapp.com/';
+    const apiUrl = 'https://script.google.com/macros/s/AKfycbyIl_dPSuMl5f6o99Y4mCKETvVCIJH4WWp8YuBqi9TxsrXsBDlZHhyOW42yLWEd299pYA/exec';
 
     function testCuota() {
-      fetch('https://script.google.com/macros/s/AKfycbyl1_dPSuMl15f6o99Y4mCKETVVCIJH4Wpb8YuBqi9TxsrXsBDI2Hhy0W42yLWE4D299pYA/exec', {
+      fetch(proxy + apiUrl, {
         method: 'POST',
         body: new URLSearchParams({
           accion: 'registrar_cuota',
@@ -27,12 +26,15 @@
         })
       })
       .then(r => r.json())
-      .then(logResult)
+      .then(data => {
+        document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+        console.log(data);
+      })
       .catch(console.error);
     }
 
     function testPase() {
-      fetch('https://script.google.com/macros/s/AKfycbyl1_dPSuMl15f6o99Y4mCKETVVCIJH4Wpb8YuBqi9TxsrXsBDI2Hhy0W42yLWE4D299pYA/exec', {
+      fetch(proxy + apiUrl, {
         method: 'POST',
         body: new URLSearchParams({
           accion: 'registrar_pase_diario',
@@ -40,7 +42,7 @@
           nombre: 'Juan',
           apellido: 'Pérez',
           dni: '12345678',
-          telefono: '1132344455',
+          telefono: '1122334455',
           email: 'juan@example.com',
           fecha_uso: '2025-08-14',
           acepta_reglamento: 'S',
@@ -49,7 +51,10 @@
         })
       })
       .then(r => r.json())
-      .then(logResult)
+      .then(data => {
+        document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+        console.log(data);
+      })
       .catch(console.error);
     }
   </script>
