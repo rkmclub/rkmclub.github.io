@@ -1,62 +1,29 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Test API RKM</title>
-</head>
-<body>
-  <h1>Test API RKM</h1>
-  <button onclick="testCuota()">Registrar Cuota</button>
-  <button onclick="testPase()">Registrar Pase Diario</button>
+  <meta charset="utf-8">
+  <title>Redirigiendo…</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <pre id="output"></pre>
+  <!-- Redirección inmediata (fallback si JS está deshabilitado) -->
+  <meta http-equiv="refresh" content="0; url=https://script.google.com/macros/s/AKfycbyIl_dPSuMl5f6o99Y4mCKETvVCIJH4WWp8YuBqi9TxsrXsBDlZHhyOW42yLWEd299pYA/exec">
+  <link rel="canonical" href="https://script.google.com/macros/s/AKfycbyIl_dPSuMl5f6o99Y4mCKETvVCIJH4WWp8YuBqi9TxsrXsBDlZHhyOW42yLWEd299pYA/exec">
+
+  <!-- Evitar caché para no quedar “pegado” si cambiás el destino -->
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
 
   <script>
-    const proxy = 'https://cors-anywhere.herokuapp.com/';
-    const apiUrl = 'https://script.google.com/macros/s/AKfycbyIl_dPSuMl5f6o99Y4mCKETvVCIJH4WWp8YuBqi9TxsrXsBDlZHhyOW42yLWEd299pYA/exec';
-
-    function testCuota() {
-      fetch(proxy + apiUrl, {
-        method: 'POST',
-        body: new URLSearchParams({
-          accion: 'registrar_cuota',
-          admin_email: 'dalmirobu@gmail.com',
-          socio_id: '4',
-          monto: '40000'
-        })
-      })
-      .then(r => r.json())
-      .then(data => {
-        document.getElementById('output').textContent = JSON.stringify(data, null, 2);
-        console.log(data);
-      })
-      .catch(console.error);
-    }
-
-    function testPase() {
-      fetch(proxy + apiUrl, {
-        method: 'POST',
-        body: new URLSearchParams({
-          accion: 'registrar_pase_diario',
-          admin_email: 'dalmirobu@gmail.com',
-          nombre: 'Juan',
-          apellido: 'Pérez',
-          dni: '12345678',
-          telefono: '1122334455',
-          email: 'juan@example.com',
-          fecha_uso: '2025-08-14',
-          acepta_reglamento: 'S',
-          monto: '8000',
-          metodo_pago: 'efectivo'
-        })
-      })
-      .then(r => r.json())
-      .then(data => {
-        document.getElementById('output').textContent = JSON.stringify(data, null, 2);
-        console.log(data);
-      })
-      .catch(console.error);
-    }
+    (function () {
+      var target = "https://script.google.com/macros/s/AKfycbyIl_dPSuMl5f6o99Y4mCKETvVCIJH4WWp8YuBqi9TxsrXsBDlZHhyOW42yLWEd299pYA/exec";
+      // replace() evita que el botón “Atrás” vuelva a esta página intermedia
+      if (location.replace) location.replace(target);
+      else location.href = target;
+    })();
   </script>
+</head>
+<body>
+  <p>Redirigiendo a <a href="https://script.google.com/macros/s/AKfycbyIl_dPSuMl5f6o99Y4mCKETvVCIJH4WWp8YuBqi9TxsrXsBDlZHhyOW42yLWEd299pYA/exec">tu app</a>…</p>
 </body>
 </html>
